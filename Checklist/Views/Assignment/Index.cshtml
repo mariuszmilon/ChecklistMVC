@@ -1,0 +1,52 @@
+﻿@model List<Checklist.Models.Assignment>
+
+<h1>All tasks:</h1>
+<button class="btn btn-dark my-3 ">
+     <a class="link-light text-decoration-none" asp-action="Create">Add a task</a>
+</button>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Topic
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Task start time
+            </th>
+            <th>
+                Task end time
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Topic)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Start)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.End)
+                </td>
+                <td>
+                    <form asp-action="End">
+                        <div class="mt-3">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <input type="submit" value="End" class="btn btn-danger px-3" />
+                        </div>
+                    </form>
+                    <button class="btn btn-warning me-3 py-1 px-3"> <a class="link-light text-decoration-none" asp-action="Edit" asp-route-id="@item.Id">Edit</a></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
