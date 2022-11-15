@@ -1,20 +1,26 @@
 ﻿using Checklist.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Checklist.Controllers
 {
+    [Authorize]
     public class AssignmentController : Controller
     {
         private readonly AppDbContext _context;
+
         public AssignmentController(AppDbContext appDbContext)
         {
             _context = appDbContext;
         }
         //Displaying all active tasks
+        
         public IActionResult Index()
         {
-            var tasks = _context.Assignments.Where(a => a.IsCompleted == false).ToList();
+            var currentUser = HttpContext?.User;
+            var currentUserName = currentUser.Identity.Name;
+            var tasks = _context.Assignments.Where(a => (a.IsCompleted == false) && (a.Author == currentUserName)).ToList();
             return View(tasks);
         }
 
@@ -24,7 +30,7 @@ namespace Checklist.Controllers
             return View();
         }
 
-        //Creating Task to DB
+        //Add Task to DB
         [HttpPost]
         public IActionResult Create(Assignment assignment)
         {
@@ -34,8 +40,9 @@ namespace Checklist.Controllers
             Assignment assignmentModel = new Assignment();
             assignmentModel.Topic = assignment.Topic;
             assignmentModel.Description = assignment.Description;
-            //TODO
-            //assignment.Author = 
+            var currentUser = HttpContext?.User;
+            var currentUserName = currentUser.Identity.Name;
+            assignmentModel.Author = currentUserName;
             assignmentModel.IsCompleted = false;
             assignmentModel.Start = DateTime.Now;
             assignmentModel.End = assignment.End;
@@ -44,7 +51,7 @@ namespace Checklist.Controllers
             return RedirectToAction("Index");
         }
 
-        //Changing task to completed
+        //Add task to completed
         [HttpPost]
         public async Task<IActionResult> End(int id)
         {
@@ -77,8 +84,7 @@ namespace Checklist.Controllers
             assignmentModel.Id = assignment.Id;
             assignmentModel.Topic = assignment.Topic;
             assignmentModel.Description = assignment.Description;
-            //TODO
-            //assignment.Author = 
+            assignment.Author = oldTask.Author;
             assignmentModel.IsCompleted = false;
             assignmentModel.Start = oldTask.Start;
             assignmentModel.End = assignment.End;
@@ -86,7 +92,5 @@ namespace Checklist.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
-
-
     }
 }
