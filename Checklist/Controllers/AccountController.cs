@@ -67,7 +67,7 @@ namespace Checklist.Controllers
                 return View(registerViewModel);
             }
 
-            var user2 = await _userManager.FindByNameAsync(registerViewModel.Nick);
+            var user2 = await _userManager.FindByNameAsync(registerViewModel.Username);
             if (user2 != null)
             {
                 TempData["Error"] = "This nick is already taken!";
@@ -75,7 +75,7 @@ namespace Checklist.Controllers
             }
 
             User newUser = new User();
-            newUser.UserName = registerViewModel.Nick;
+            newUser.UserName = registerViewModel.Username;
             newUser.Email = registerViewModel.Email;
             newUser.Name = registerViewModel.Name;
 

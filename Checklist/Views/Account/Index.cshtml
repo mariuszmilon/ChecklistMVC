@@ -1,11 +1,17 @@
-﻿<body>
-
-    <div style="position:fixed; bottom:50%; left:50%">
-        <button class="btn btn-dark my-3 px-3 py-1">
-            <a class="link-light text-decoration-none" asp-controller="Account" asp-action="Login">Login</a>
-        </button>
-        <button class="btn btn-dark my-3 px-3 py-1">
-            <a class="link-light text-decoration-none" asp-controller="Account" asp-action="Register">Register</a>
-        </button>
+﻿<body class="d-flex align-items-center justify-content-center flex-column">
+    <div class="d-flex align-items-center flex-column">
+        <h1>Please login or create an account to view your tasks</h1>
+        <div>
+            <a class="link-light text-decoration-none" asp-controller="Account" asp-action="Login">
+                <button class="btn btn-primary my-3 px-5 py-3 mx-3">
+                    Login
+                </button
+            </a>
+            <a class="link-light text-decoration-none" asp-controller="Account" asp-action="Register">
+                <button class="btn btn-secondary my-3 px-5 py-3 mx-3">
+                    Register
+                </button
+            </a>
+        </div>
     </div>
 </body>

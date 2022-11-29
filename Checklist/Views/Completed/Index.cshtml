@@ -1,11 +1,11 @@
 ﻿@model List<Checklist.Models.Assignment>
 
 <h1>All completed tasks:</h1>
-<table class="table">
+<table class="table text-light">
     <thead>
         <tr>
             <th>
-                Topic
+                Task
             </th>
             <th>
                 Description
@@ -17,20 +17,11 @@
         {
                 <tr>
                     <td>
-                    @Html.DisplayFor(modelItem => item.Topic)
+                        @Html.DisplayFor(modelItem => item.Topic)
                     </td>
                     <td>
-                    @Html.DisplayFor(modelItem => item.Description)
+                        @Html.DisplayFor(modelItem => item.Description)
                     </td>
-@*                    <td>
-                        <form asp-action="End">
-                            <div class="mt-3">
-                                <input type="hidden" name="id" value="@item.Id" />
-                                <input type="submit" value="End" class="btn btn-danger px-3" />
-                            </div>
-                        </form>
-                        <button class="btn btn-warning me-3 py-1 px-3"> <a class="link-light text-decoration-none" asp-action="Edit" asp-route-id="@item.Id">Edit</a></button>
-                    </td>*@
                 </tr>
         }
     </tbody>

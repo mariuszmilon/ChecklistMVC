@@ -1,23 +1,27 @@
 ﻿@model List<Checklist.Models.Assignment>
 
-<h1>All tasks:</h1>
-<button class="btn btn-dark my-3 ">
-     <a class="link-light text-decoration-none" asp-action="Create">Add a task</a>
-</button>
-<table class="table">
+<div class="d-flex justify-content-between">
+    <h1>Current tasks:</h1>
+    <a class="link-light text-decoration-none" asp-action="Create">
+        <button class="btn btn-primary my-3">
+             Add a task
+        </button>
+    </a>
+</div>
+<table class="table text-light">
     <thead>
         <tr>
             <th>
-                Topic
+                Task
             </th>
             <th>
                 Description
             </th>
             <th>
-                Task start time
+                Task added date
             </th>
             <th>
-                Task end time
+                Task end date
             </th>
         </tr>
     </thead>
@@ -37,14 +41,14 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.End)
                 </td>
-                <td>
+                <td class="d-flex">
                     <form asp-action="End">
-                        <div class="mt-3">
+                        <div>
                             <input type="hidden" name="id" value="@item.Id" />
-                            <input type="submit" value="End" class="btn btn-danger px-3" />
+                            <input type="submit" value="Complete task" class="btn btn-success" />
                         </div>
                     </form>
-                    <button class="btn btn-warning me-3 py-1 px-3"> <a class="link-light text-decoration-none" asp-action="Edit" asp-route-id="@item.Id">Edit</a></button>
+                    <a class="link-light text-decoration-none" asp-action="Edit" asp-route-id="@item.Id"><button class="btn btn-warning ms-4">Edit task</button></a>
                 </td>
             </tr>
         }
