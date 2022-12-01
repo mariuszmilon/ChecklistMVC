@@ -84,7 +84,7 @@ namespace Checklist.Controllers
             assignmentModel.Id = assignment.Id;
             assignmentModel.Topic = assignment.Topic;
             assignmentModel.Description = assignment.Description;
-            assignment.Author = oldTask.Author;
+            assignmentModel.Author = oldTask.Author;
             assignmentModel.IsCompleted = false;
             assignmentModel.Start = oldTask.Start;
             assignmentModel.End = assignment.End;
