@@ -8,6 +8,7 @@ namespace Checklist.Models
         [Required]
         public string Name { get; set; }
         [Required]
+        [DisplayName("Nick")]
         public string Username { get; set; }
         [Required]
         [DisplayName("Email address")]

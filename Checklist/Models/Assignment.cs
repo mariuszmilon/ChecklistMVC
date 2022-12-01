@@ -7,7 +7,6 @@ namespace Checklist.Models
         public int Id { get; set; }
         [Required]
         public string Topic { get; set; }
-        [Required]
         public string Description { get; set; }
         public string Author { get; set; }
         public Boolean IsCompleted { get; set; }

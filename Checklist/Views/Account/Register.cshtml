@@ -1,10 +1,6 @@
 ﻿@model Checklist.Models.RegisterViewModel
 <body class="d-flex align-items-center justify-content-center flex-column">
     <h1>Register</h1>
-    @if (TempData["Error"] != null)
-    {
-            <h2 class="alert-info">@TempData["Error"]</h2>
-    }
     <div class="row">
         <div class="col-md-4">
             <form asp-action="Register" enctype="multipart/form-data">
@@ -38,6 +34,14 @@
                     <input type="submit" value="Register" class="btn btn-success my-3 px-4 py-1"/>
                 </div>
             </form>
+            <div>
+            Do you have an account?
+            <a class="link-light text-decoration-none" asp-controller="Account" asp-action="Login">
+                <button class="btn btn-primary mx-3 px-3 py-1">
+                    Login
+                </button>
+            </a>
+        </div>
         </div>
     </div>
 </body>

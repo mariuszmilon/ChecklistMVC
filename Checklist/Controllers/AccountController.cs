@@ -83,7 +83,7 @@ namespace Checklist.Controllers
 
             if(!newUserResponse.Succeeded)
             {
-                TempData["Error"] = "Something went wrong!";
+                TempData["Error"] = "Passwords must have at least one non alphanumeric character, one digit and one uppercase!";
                 return View(registerViewModel);
             }
 
