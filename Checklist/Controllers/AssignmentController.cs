@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace Checklist.Controllers
 {
@@ -21,6 +22,14 @@ namespace Checklist.Controllers
             var currentUser = HttpContext?.User;
             var currentUserName = currentUser.Identity.Name;
             var tasks = _context.Assignments.Where(a => (a.IsCompleted == false) && (a.Author == currentUserName)).ToList();
+
+            foreach (var item in tasks)
+            {
+                if (item.End < DateTime.Now)
+                    item.Alert = "text-danger";
+                else
+                    item.Alert = "";
+            }
             return View(tasks);
         }
 

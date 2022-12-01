@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Checklist",
+    "\\Checklist\\Views",
+    "\\Checklist\\Views\\Assignment"
   ],
-  "SelectedNode": "\\Checklist.sln",
+  "SelectedNode": "\\Checklist\\Views\\Assignment\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }
